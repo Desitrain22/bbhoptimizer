@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block head %} {{ super() }}
 <title>BBH Bond Universe</title>
 {% endblock %} {% block body %} {{ super() }}
-<form method="POST" action="/optimzer_result">
+<form method="POST" action="/optimizer_result">
   <table class="player_table" id="player_table">
     <tr>
       <th></th>
@@ -26,6 +26,12 @@
       <td>Class 2 Sector weight limit</td>
       <td class="tdinput black">
         <input type="number" step="0.01" name="Sector Max" value="0.02" />
+      </td>
+    </tr>
+    <tr>
+      <td>Overall Weight Limit</td>
+      <td class="tdinput black">
+        <input type="number" step="0.01" name="Weight Max" value="0.05" />
       </td>
     </tr>
   </table>

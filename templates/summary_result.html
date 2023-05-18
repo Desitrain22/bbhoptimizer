@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block head %} {{ super() }}
+{% extends 'index.html' %} {% block head %} {{ super() }}
 <title>BBH Bond Universe</title>
 {% endblock %} {% block body %} {{ super() }}
 
@@ -20,10 +20,4 @@
   {%endfor%}
 </table>
 
-<form action="/">
-  <input type="submit" value="Back to Index" />
-</form>
-<form action="/optimizer">
-  <input type="submit" value="Go to Optimizer" />
-</form>
 {% endblock %}

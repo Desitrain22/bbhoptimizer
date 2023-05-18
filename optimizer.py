@@ -1,5 +1,5 @@
 import pandas as pd
-from pulp import LpProblem, LpMaximize, LpVariable, lpSum
+from pulp import *
 
 
 def optimize(
@@ -12,9 +12,10 @@ def optimize(
 ):
     # Initialize the Problem
     lp = LpProblem("bond-portfo-optimizer", LpMaximize)
+    u = generate_class_weights(u)
 
     # Per Jorge, the portfolio is to be evaluated for only 1 of the two effective dates
-    # Should this not be the case, we'd need to comment this line
+    # Should this not be the case, we'd need to comment line 18
     u = u[u["EFFDATE"].apply(pd.Timestamp) == date]
 
     # This seems unnecessary given our indexed dataframe; however, we need to ensure no negative values
@@ -56,6 +57,12 @@ def optimize(
 
     lp.solve()
     return lp
+
+
+def generate_class_weights(df: pd.DataFrame, class_column: str = "CLASS_2"):
+    for field in df[class_column].unique():
+        df[field] = (df[class_column] == field).apply(lambda x: 1 if x else 0)
+    return df
 
 
 def get_categories(
