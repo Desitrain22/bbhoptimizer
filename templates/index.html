@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block head %} {{ super() }}
+<title>BBH Bond Universe</title>
+{% endblock %} {% block body %} {{ super() }}
+<form method="POST" action="/result">
+  <table class="player_table" id="player_table">
+    <tr>
+      <th>Me? Recyle CSS sheets?</th>
+      <th>I would never, Jorge!</th>
+    </tr>
+    {% for key, value in categories.items() %}
+    <tr>
+      <td>{{key}}</td>
+      <td class="tdinput">
+        <select name="{{key}}">
+          <option>Select Category</option>
+          {%for val in value%}
+          <option value="{{val}}">{{val}}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    {%endfor%}
+    <tr>
+      <td>Rating</td>
+      <td class="tdinput">
+        <select name="Rating">
+          <option>Select Rating</option>
+          {% for rat in ratings %}
+          <option value="{{rat}}">{{rat}}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Minimum Dur (Years)</td>
+      <td class="tdinput black">
+        <input type="number" step="0.01" name="EFFDUR Max" value="3" />
+      </td>
+    </tr>
+    <tr>
+      <td>Maximum Dur (Years)</td>
+      <td class="tdinput black">
+        <input type="number" step="0.01" name="EFFDUR Min" value="5" />
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Filter" />
+</form>
+{% endblock %}

@@ -1,0 +1,44 @@
+.player_table {
+    font-family: ff-good-headline-web-pro-condensed;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+@font-face {
+    font-family: ff-good-headline-web-pro-condensed;
+    src: url(FFGoodProCond-Light.ttf);
+}
+
+.player_table td,
+.player_table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+input {
+    font-size: 20px;
+    font-family: ff-good-headline-web-pro-condensed;
+}
+
+button {
+    font-size: 20px;
+    font-family: ff-good-headline-web-pro-condensed;
+}
+
+.player_table tr:nth-child(even) {
+    font-family: ff-good-headline-web-pro-condensed;
+    background-color: #f2f2f2;
+}
+
+.player_table tr:hover {
+    background-color: #ddd;
+}
+
+.player_table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    text-align: left;
+    background-color: #f3c164;
+    color: white;
+}
