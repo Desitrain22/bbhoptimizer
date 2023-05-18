@@ -15,7 +15,7 @@ def optimize(
     u = generate_class_weights(u)
 
     # Per Jorge, the portfolio is to be evaluated for only 1 of the two effective dates
-    # Should this not be the case, we'd need to comment line 18
+    # Should this not be the case, we'd need to comment line 19
     u = u[u["EFFDATE"].apply(pd.Timestamp) == date]
 
     # This seems unnecessary given our indexed dataframe; however, we need to ensure no negative values
@@ -35,7 +35,10 @@ def optimize(
     lp += lpSum([obj[b] * bond_index[b] for b in bond_index.keys()])
 
     # restrict our weights to 100% total
-    lp += lpSum(bond_index.values()) <= 1.0
+    lp += (
+        lpSum([1 * bond_index[b] for b in bond_index.keys()]) <= 1,
+        "Maximum total weight",
+    )
 
     # Add restrictions for the 3 categories under class 2
     for cat in u.columns[-3:]:
