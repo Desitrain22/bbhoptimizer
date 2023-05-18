@@ -3,6 +3,10 @@
 {% endblock %} {% block body %} {{ super() }}
 
 <table class="player_table" id="player_table">
+  <tr>
+    <th>Bond ID</th>
+    <th>Weight</th>
+  </tr>
   {% for key, value in portfolio.items() %}
   <tr>
     <td>{{ key }}</td>

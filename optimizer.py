@@ -35,7 +35,7 @@ def optimize(
     lp += lpSum([obj[b] * bond_index[b] for b in bond_index.keys()])
 
     # restrict our weights to 100% total
-    lp += lpSum(list(bond_index.values())) <= 1.0
+    lp += lpSum(bond_index.values()) <= 1.0
 
     # Add restrictions for the 3 categories under class 2
     for cat in u.columns[-3:]:
@@ -55,14 +55,9 @@ def optimize(
         total_dur - delta
     )
 
+    lp.writeLP("test.lp")
     lp.solve()
     return lp
-
-
-def generate_class_weights(df: pd.DataFrame, class_column: str = "CLASS_2"):
-    for field in df[class_column].unique():
-        df[field] = (df[class_column] == field).apply(lambda x: 1 if x else 0)
-    return df
 
 
 def get_categories(
