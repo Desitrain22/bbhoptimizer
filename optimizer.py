@@ -115,21 +115,9 @@ def summarize(
     df: pd.DataFrame,
     classifications: list[str],
     rating: str,
-    dur_cell_min: int,
-    dur_cell_max: int,
+    dur_cell_min,
+    dur_cell_max,
 ):
-    """Given a portfolio as a dataframe, dictionary of classification, rating, and dur_cell, returns a dictionary with
-    the portfolio summary. The summary is a dictionary with the total market value (at key 'mv'), and two keys,
-    OAS and YTM, with each value containing a nested dictionary summary with min, max, median, and mode of each metric
-
-    :param df: an unindexed dataframe of the bond universe U
-    :param dict classification: a dictionary with integer keys corresponding to each classification field, and string
-    values of the classifcation
-    :param str rating: a bond rating, ranging from BBB to AAA
-    :param str dur_cell: I have no idea wth this is
-
-    :return: a summary dictionary"""
-
     df = filter(df, classifications, rating, dur_cell_min, dur_cell_max)
     result = {"OAS": {}, "YTM": {}}
     result["mv"] = df["MV"].sum()

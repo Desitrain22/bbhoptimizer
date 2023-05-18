@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block head %} {{ super() }}
+<title>BBH Bond Universe</title>
+{% endblock %} {% block body %} {{ super() }}
+<form method="POST" action="/optimzer_result">
+  <table class="player_table" id="player_table">
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>Select Optimization Metric</td>
+      <td class="tdinput">
+        <select name="Metric">
+          <option value="OAS">OAS</option>
+          <option value="YTM">YTM</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Duration Delta (Years)</td>
+      <td class="tdinput black">
+        <input type="number" step="0.01" name="EFFDUR Max" value="3" />
+      </td>
+    </tr>
+    <tr>
+      <td>Class 2 Sector weight limit</td>
+      <td class="tdinput black">
+        <input type="number" step="0.01" name="Sector Max" value="0.02" />
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="Submit" />
+</form>
+{% endblock %}

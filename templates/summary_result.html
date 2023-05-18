@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block head %} {{ super() }}
+<title>BBH Bond Universe</title>
+{% endblock %} {% block body %} {{ super() }}
+
+<table class="player_table" id="player_table">
+  <tr>
+    <td>MV</td>
+    <td>{{mv}}</td>
+  </tr>
+  {% for key, value in oas.items() %}
+  <tr>
+    <td>OAS {{ key }}</td>
+    <td>{{ value }}</td>
+  </tr>
+  {%endfor%} {% for key, value in ytm.items() %}
+  <tr>
+    <td>YTM {{ key }}</td>
+    <td>{{ value }}</td>
+  </tr>
+  {%endfor%}
+</table>
+
+<form action="/">
+  <input type="submit" value="Back to Index" />
+</form>
+<form action="/optimizer">
+  <input type="submit" value="Go to Optimizer" />
+</form>
+{% endblock %}
