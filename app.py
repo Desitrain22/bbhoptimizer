@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from optimizer import summarize, filter, get_categories, optimize
 import pandas as pd
-
+from pulp import *
 
 app = Flask(__name__)
 df = pd.read_csv("U.csv")
@@ -63,17 +63,17 @@ def optimizer():
 def optimizer_result():
     result = request.form.to_dict(flat=False)
     print(result)
-    print(
-        optimize(
-            df,
-            str(result["Metric"][0]),
-            pd.Timestamp("2023-03-31"),
-            sec_weight=float(result["Sector Max"][0]),
-            max_indiv_weight=float(result["Weight Max"][0]),
-            delta=int(result["EFFDUR Max"][0]),
-        )
+    optimized = optimize(
+        df,
+        str(result["Metric"][0]),
+        pd.Timestamp("2023-03-31"),
+        sec_weight=float(result["Sector Max"][0]),
+        max_indiv_weight=float(result["Weight Max"][0]),
+        delta=int(result["EFFDUR Max"][0]),
     )
-    return optimizer_result()
+
+    portfo = {v.name: v.varValue for v in optimized.variables()}
+    return render_template("optimizer_results.html", portfolio=portfo)
 
 
 if __name__ == "__main__":

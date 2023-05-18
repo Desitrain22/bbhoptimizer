@@ -1,0 +1,14 @@
+{% extends 'optimizer.html' %} {% block head %} {{ super() }}
+<title>BBH Bond Universe</title>
+{% endblock %} {% block body %} {{ super() }}
+
+<table class="player_table" id="player_table">
+  {% for key, value in portfolio.items() %}
+  <tr>
+    <td>{{ key }}</td>
+    <td>Weight: {{ value }}</td>
+  </tr>
+  {%endfor%}
+</table>
+
+{%endblock%}
