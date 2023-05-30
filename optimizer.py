@@ -49,7 +49,7 @@ def optimize(
             <= sec_weight
         )
 
-    total_dur = u["EFFDUR"].sum()
+    total_dur = (u["EFFDUR"] * u["MW"]).sum()
     eff_dur = dict(zip(u["SECURITY_ALIAS"], u["EFFDUR"].astype(float)))
     lp += lpSum([eff_dur[b] * bond_index[b] for b in bond_index.keys()]) <= (
         total_dur + delta

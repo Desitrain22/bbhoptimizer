@@ -72,7 +72,7 @@ def optimizer_result():
         delta=int(result["EFFDUR Max"][0]),
     )
 
-    portfo = {v.name: v.varValue for v in optimized.variables()}
+    portfo = {v.name: v.varValue for v in optimized.variables() if v.varValue > 0}
     return render_template("optimizer_results.html", portfolio=portfo)
 
 
